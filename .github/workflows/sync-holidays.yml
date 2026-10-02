@@ -1,0 +1,63 @@
+name: 공휴일 자동 동기화
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # 한국시간 매일 오전 9시
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  sync-holidays:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 가져오기
+        uses: actions/checkout@v5
+
+      - name: 공식 공휴일 조회 및 대조
+        id: sync
+        env:
+          KASI_SERVICE_KEY: ${{ secrets.KASI_SERVICE_KEY }}
+        run: |
+          set -o pipefail
+          node scripts/sync-holidays.mjs | tee sync-result.txt
+
+          if grep -q "HOLIDAYS_CHANGED=true" sync-result.txt; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 변경된 공휴일표 저장
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          git config user.name "polnote-holiday-bot"
+          git config user.email "polnote-holiday-bot@users.noreply.github.com"
+          git add holidays.json
+          git commit -m "chore: 공식 공휴일표 갱신"
+          git push
+
+      - name: 변경 알림 이슈 생성
+        if: steps.sync.outputs.changed == 'true'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const title = '공휴일표가 갱신되었습니다';
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              per_page: 100
+            });
+
+            if (!issues.data.some((issue) => issue.title === title)) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body: '한국천문연구원 특일 정보 기준으로 holidays.json이 변경되었습니다. PolNote 앱은 다음 실행 시 최신 공휴일표를 적용합니다.'
+              });
+            }
