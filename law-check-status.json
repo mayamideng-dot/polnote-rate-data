@@ -1,8 +1,11 @@
 {
   "schemaVersion": 1,
-  "checkedAt": null,
+  "checkedAt": "2026-10-02T11:49:37.406Z",
   "changed": false,
   "reviewRequired": false,
   "changedItems": [],
-  "sources": {}
+  "sources": {
+    "provider": "국가법령정보센터 Open API",
+    "targetCount": 8
+  }
 }

@@ -1,5 +1,54 @@
 {
   "schemaVersion": 1,
-  "updatedAt": null,
-  "laws": {}
+  "updatedAt": "2026-10-02T11:49:37.406Z",
+  "laws": {
+    "형법": {
+      "group": "법령검색",
+      "checkedAt": "2026-10-02T11:49:37.406Z",
+      "url": "https://www.law.go.kr/DRF/lawSearch.do?OC=***&target=law&type=JSON&display=5&query=%ED%98%95%EB%B2%95",
+      "responseHash": "a0d6b9c8d56f39bfbb00d37dbc8cb2d7a7af1dd925394aa45fa77b7988f519ef"
+    },
+    "민법": {
+      "group": "법령검색",
+      "checkedAt": "2026-10-02T11:49:37.406Z",
+      "url": "https://www.law.go.kr/DRF/lawSearch.do?OC=***&target=law&type=JSON&display=5&query=%EB%AF%BC%EB%B2%95",
+      "responseHash": "c15a6a10515334f4bc137ac20f086ac959dc208c746f2f49fdf8490d85b52620"
+    },
+    "소년법": {
+      "group": "연령계산",
+      "checkedAt": "2026-10-02T11:49:37.406Z",
+      "url": "https://www.law.go.kr/DRF/lawSearch.do?OC=***&target=law&type=JSON&display=5&query=%EC%86%8C%EB%85%84%EB%B2%95",
+      "responseHash": "1c39b18fdc2efa4e549cb46fee15eed1ec8d48351fc07c9137f3b244f29f3863"
+    },
+    "아동복지법": {
+      "group": "연령계산",
+      "checkedAt": "2026-10-02T11:49:37.406Z",
+      "url": "https://www.law.go.kr/DRF/lawSearch.do?OC=***&target=law&type=JSON&display=5&query=%EC%95%84%EB%8F%99%EB%B3%B5%EC%A7%80%EB%B2%95",
+      "responseHash": "36b7e8b23c261c79c8745d15c976b76d4df69b5d781a4d3b7572b0b2d7c66be4"
+    },
+    "청소년보호법": {
+      "group": "연령계산",
+      "checkedAt": "2026-10-02T11:49:37.406Z",
+      "url": "https://www.law.go.kr/DRF/lawSearch.do?OC=***&target=law&type=JSON&display=5&query=%EC%B2%AD%EC%86%8C%EB%85%84%EB%B3%B4%ED%98%B8%EB%B2%95",
+      "responseHash": "cf29332c392ea5bbf52bc6f4daa8444b149bd1c0a1501e29caf01f720340ce92"
+    },
+    "성폭력범죄의 처벌 등에 관한 특례법": {
+      "group": "성범죄",
+      "checkedAt": "2026-10-02T11:49:37.406Z",
+      "url": "https://www.law.go.kr/DRF/lawSearch.do?OC=***&target=law&type=JSON&display=5&query=%EC%84%B1%ED%8F%AD%EB%A0%A5%EB%B2%94%EC%A3%84%EC%9D%98+%EC%B2%98%EB%B2%8C+%EB%93%B1%EC%97%90+%EA%B4%80%ED%95%9C+%ED%8A%B9%EB%A1%80%EB%B2%95",
+      "responseHash": "283c075a3bfa8c122cc018879e320810fc316dc3175a6594d8cc2888e46fb329"
+    },
+    "아동·청소년의 성보호에 관한 법률": {
+      "group": "성범죄",
+      "checkedAt": "2026-10-02T11:49:37.406Z",
+      "url": "https://www.law.go.kr/DRF/lawSearch.do?OC=***&target=law&type=JSON&display=5&query=%EC%95%84%EB%8F%99%C2%B7%EC%B2%AD%EC%86%8C%EB%85%84%EC%9D%98+%EC%84%B1%EB%B3%B4%ED%98%B8%EC%97%90+%EA%B4%80%ED%95%9C+%EB%B2%95%EB%A5%A0",
+      "responseHash": "619a69ae110a05573e76a80322fbecdd3970359c713e29eb4d43fcc7b181171f"
+    },
+    "경범죄 처벌법": {
+      "group": "경범죄",
+      "checkedAt": "2026-10-02T11:49:37.406Z",
+      "url": "https://www.law.go.kr/DRF/lawSearch.do?OC=***&target=law&type=JSON&display=5&query=%EA%B2%BD%EB%B2%94%EC%A3%84+%EC%B2%98%EB%B2%8C%EB%B2%95",
+      "responseHash": "1beb95166bcb179f619bee93b5eecba9a1d49e8ef516cccd49f5f5f06d4952cb"
+    }
+  }
 }
