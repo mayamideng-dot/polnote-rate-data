@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-02",
+  "years": {
+    "2026": {
+      "status": "confirmed",
+      "sources": [
+        {
+          "name": "인사혁신처 2026년 공무원 봉급표",
+          "url": "https://www.mpm.go.kr/mpm/info/resultPay/bizSalary/2026/"
+        }
+      ],
+      "police": {
+        "경장": {
+          "7": {
+            "basicMonthlyPay": 2628900,
+            "overtimeHourly": 12584,
+            "nightHourly": 4195,
+            "holidayDaily": 101153
+          }
+        }
+      },
+      "allowances": {
+        "festiveBonusRate": 0.6,
+        "regularServiceAllowance": {
+          "1": 0.05,
+          "2": 0.1,
+          "3": 0.15,
+          "4": 0.2,
+          "5": 0.25,
+          "6": 0.3,
+          "7": 0.35,
+          "8": 0.4,
+          "9": 0.45,
+          "10": 0.5
+        }
+      }
+    },
+    "2027": {
+      "status": "pending",
+      "message": "2027년 공식 봉급·수당 자료 공개 후 자동 갱신 대상"
+    }
+  }
+}
