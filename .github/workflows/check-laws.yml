@@ -1,4 +1,4 @@
-name: check-laws
+name: 법령 자동 점검
 
 on:
   workflow_dispatch:
