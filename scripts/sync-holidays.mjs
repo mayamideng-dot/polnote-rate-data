@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-const apiKey = process.env.KASI_SERVICE_KEY;
+const apiKey = process.env.KASI_SERVICE_KEY?.trim();
 if (!apiKey) {
   throw new Error("KASI_SERVICE_KEY가 등록되지 않았습니다.");
 }
@@ -14,23 +14,6 @@ const currentYear = Number(
   }).format(new Date())
 );
 
-function tagValue(xml, tag) {
-  const match = xml.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`));
-  return match ? match[1].trim() : "";
-}
-
-function parseItems(xml) {
-  const matches = xml.match(/<item>[\s\S]*?<\/item>/g) || [];
-
-  return matches
-    .map((item) => ({
-      date: tagValue(item, "locdate"),
-      name: tagValue(item, "dateName"),
-      isHoliday: tagValue(item, "isHoliday")
-    }))
-    .filter((item) => item.date && item.isHoliday === "Y");
-}
-
 async function fetchYear(year) {
   const holidays = {};
 
@@ -39,21 +22,34 @@ async function fetchYear(year) {
       "https://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo"
     );
 
-    url.searchParams.set("serviceKey", apiKey);
+    url.searchParams.set("ServiceKey", decodeURIComponent(apiKey));
     url.searchParams.set("solYear", String(year));
     url.searchParams.set("solMonth", String(month).padStart(2, "0"));
     url.searchParams.set("numOfRows", "100");
+    url.searchParams.set("_type", "json");
 
     const response = await fetch(url);
-    const xml = await response.text();
+    const payload = await response.json();
+    const header = payload?.response?.header;
 
-    if (!response.ok || tagValue(xml, "resultCode") !== "00") {
-      throw new Error(`${year}년 ${month}월 공휴일 조회 실패`);
+    if (!response.ok || header?.resultCode !== "00") {
+      throw new Error(
+        `${year}년 ${month}월 조회 실패: HTTP ${response.status}, ` +
+        `API ${header?.resultCode || "없음"} - ${header?.resultMsg || "응답 확인 필요"}`
+      );
     }
 
-    for (const item of parseItems(xml)) {
-      const key = `${item.date.slice(0, 4)}-${item.date.slice(4, 6)}-${item.date.slice(6, 8)}`;
-      holidays[key] = item.name;
+    const sourceItems = payload?.response?.body?.items?.item || [];
+    const items = Array.isArray(sourceItems) ? sourceItems : [sourceItems];
+
+    for (const item of items) {
+      if (item.isHoliday !== "Y" || !item.locdate) {
+        continue;
+      }
+
+      const date = String(item.locdate);
+      const key = `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`;
+      holidays[key] = item.dateName;
     }
   }
 
