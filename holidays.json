@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": null,
+  "years": {
+    "2026": {
+      "status": "pending_official_sync",
+      "holidays": {}
+    },
+    "2027": {
+      "status": "pending_official_sync",
+      "holidays": {}
+    }
+  },
+  "sources": {
+    "primary": {
+      "name": "우주항공청 월력요항",
+      "url": "https://www.kasa.go.kr/"
+    },
+    "secondary": {
+      "name": "공공데이터포털 특일 정보",
+      "status": "not_configured"
+    }
+  }
+}
