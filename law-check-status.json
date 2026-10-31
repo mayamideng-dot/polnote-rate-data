@@ -1,9 +1,14 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-10-02T11:49:37.406Z",
-  "changed": false,
-  "reviewRequired": false,
-  "changedItems": [],
+  "checkedAt": "2026-10-31T19:00:22.620Z",
+  "changed": true,
+  "reviewRequired": true,
+  "changedItems": [
+    {
+      "group": "연령계산",
+      "name": "청소년보호법"
+    }
+  ],
   "sources": {
     "provider": "국가법령정보센터 Open API",
     "targetCount": 8
